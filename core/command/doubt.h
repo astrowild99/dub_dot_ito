@@ -6,10 +6,11 @@
 #define DUB_DOT_ITO_DOUBT_H
 
 
-#include "command_interface.h"
+#include "command.h"
 
-class Doubt : public CommandInterface {
-
+class Doubt : public Command {
+public:
+    void execute() override;
 };
 
 

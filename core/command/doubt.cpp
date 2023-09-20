@@ -3,3 +3,7 @@
 //
 
 #include "doubt.h"
+
+void Doubt::execute() {
+    // todo implement me
+}

@@ -7,14 +7,14 @@
 
 
 #include <vector>
-#include "command_interface.h"
+#include "command.h"
 #include "../card/card.h"
 
-class PlayCards : public CommandInterface {
+class PlayCards : public Command {
 private:
     std::vector<Card*> cards;
 public:
-
+    void execute() override;
 };
 
 

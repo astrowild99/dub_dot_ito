@@ -7,16 +7,18 @@
 
 
 #include <vector>
-#include "command_interface.h"
+#include "command.h"
 
 class Queue {
 private:
-    std::vector<CommandInterface*> queue;
+    std::vector<Command*> queue;
     int next_ptr = 0;
 
 public:
-    CommandInterface *next();
-    void push(CommandInterface *p_command);
+    Command *next();
+    void push(Command *p_command);
+
+    int get_next_queue_size();
 };
 
 
