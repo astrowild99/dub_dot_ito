@@ -36,12 +36,21 @@ std::vector<Card *> Game::get_burned() {
 }
 
 Player *Game::get_next_player(Player *player) {
-    bool next = false;
-    for(Player *p: this->players) {
-        if (next)
-            return p;
-        if (p == player)
-            next = true;
+    int count = (int) this->players.size();
+    int position = 0;
+    for (int i = 0; i < count; i++) {
+        if (this->players.at(i) == player)
+            position = i;
     }
-    return this->players.at(0);
+    return this->players.at((position + 1) % count);
+}
+
+Player *Game::get_previous_player(Player *player) {
+    int count = (int) this->players.size();
+    int position = 0;
+    for (int i = 0; i < count; i++) {
+        if (this->players.at(i) == player)
+            position = i;
+    }
+    return this->players.at(abs(position - 1) % count);
 }

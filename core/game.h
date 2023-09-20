@@ -31,6 +31,7 @@ public:
     std::vector<Card*> get_burned();
 
     Player *get_next_player(Player *player);
+    Player *get_previous_player(Player *player);
 };
 
 
