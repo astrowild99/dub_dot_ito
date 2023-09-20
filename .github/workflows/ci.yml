@@ -18,4 +18,4 @@ jobs:
     - name: make
       run: cd bin && make
     - name: test
-      run: ./tests
+      run: ./bin/tests
