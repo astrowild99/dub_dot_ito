@@ -25,6 +25,12 @@ public:
     Game(std::vector<Player*> p_players, Player *p_dealer);
     Game(std::vector<Player*> p_players) : Game(p_players, NULL) {};
     ~Game();
+
+    std::vector<Card*> get_table();
+    std::vector<Player*> get_players();
+    std::vector<Card*> get_burned();
+
+    Player *get_next_player(Player *player);
 };
 
 

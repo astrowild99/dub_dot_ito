@@ -1,24 +1,25 @@
 cmake_minimum_required(VERSION 3.26)
 project(dub_dot_ito)
 
+enable_testing()
+
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(dub_dot_ito main.cpp
-        core/game.cpp
-        core/game.h
-        core/player/player.cpp
-        core/player/player.h
-        core/card/card.cpp
-        core/card/card.h
-        core/player/state/player_state_interface.h
-        core/player/state/idle.cpp
-        core/player/state/idle.h
-        cli/cli.cpp
-        cli/cli.h
-        core/command/queue.cpp
-        core/command/queue.h
-        core/command/command_interface.h
-        core/command/doubt.cpp
-        core/command/doubt.h
-        core/command/append_cards.cpp
-        core/command/append_cards.h)
+file(GLOB_RECURSE HEADERS RELATIVE ${CMAKE_SOURCE_DIR} "core/*.h")
+file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "core/*.cpp")
+file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
+
+add_executable(dub_dot_ito
+        ${HEADERS}
+        ${SOURCES}
+        main.cpp
+)
+
+add_executable(tests
+        thirdparty/doctest.h
+        ${HEADERS}
+        ${SOURCES}
+        ${TESTS}
+)
+target_compile_features(tests PRIVATE cxx_std_17)
+set_target_properties(tests PROPERTIES LINKER_LANGUAGE CXX)
