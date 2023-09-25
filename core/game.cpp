@@ -4,6 +4,28 @@
 
 #include "game.h"
 
+// region playing cards
+
+PlayingCards::PlayingCards(Player *p_player, std::vector<Card *> p_cards) {
+    this->player = p_player;
+    this->cards = p_cards;
+}
+
+/**
+ * the cards here are simply distributed, it is the destructor that needs
+ * to unset the playing card itself
+ * @param p_player
+ */
+void PlayingCards::distribute(Player *p_player) {
+    for(Card *c: this->cards) {
+        p_player->appendCard(c);
+    }
+}
+
+// endregion playing cards
+
+// region game
+
 Game::Game(std::vector<Player *> p_players, Player *p_dealer) {
     auto card_factory = CardFactory::getSingleton();
     this->players = p_players;
@@ -22,10 +44,6 @@ Game::Game(std::vector<Player *> p_players, Player *p_dealer) {
 }
 
 Game::~Game() = default;
-
-std::vector<Card *> Game::get_table() {
-    return this->table;
-}
 
 std::vector<Player *> Game::get_players() {
     return this->players;
@@ -54,3 +72,5 @@ Player *Game::get_previous_player(Player *player) {
     }
     return this->players.at(abs(position - 1) % count);
 }
+
+// endregion game

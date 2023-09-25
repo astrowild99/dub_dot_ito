@@ -10,6 +10,15 @@
 #include "command/command.h"
 #include "command/queue.h"
 
+class PlayingCards {
+private:
+    Player *player;
+    std::vector<Card*> cards;
+
+public:
+    PlayingCards(Player *p_player, std::vector<Card*> p_cards);
+    void distribute(Player *p_player);
+};
 
 /**
  * this is a single instance of a game
@@ -20,11 +29,9 @@ private:
     std::vector<Player*> players;
     Player *dealer;
 
-    std::vector<Card*> table;
     std::vector<Card*> burned;
 
     Queue *command_queue;
-
 public:
     Game(std::vector<Player*> p_players, Player *p_dealer);
     Game(std::vector<Player*> p_players) : Game(p_players, NULL) {};
@@ -36,9 +43,9 @@ public:
 
     Player *get_next_player(Player *player);
     Player *get_previous_player(Player *player);
+    void next_player();
 
     void append_command(Command *command);
-    void next_command();
 };
 
 

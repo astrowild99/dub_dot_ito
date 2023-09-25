@@ -21,6 +21,7 @@ public:
     ~Player();
 
     void setCards(std::vector<Card*> p_cards);
+    void appendCard(Card *card);
     void printCards();
 
     std::string getName();

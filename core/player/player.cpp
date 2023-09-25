@@ -29,6 +29,10 @@ void Player::printCards() {
     }
 }
 
+void Player::appendCard(Card *card) {
+    this->cards.push_back(card);
+}
+
 std::string Player::getName() {
     return this->name;
 }
