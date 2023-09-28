@@ -5,6 +5,7 @@
 #ifndef DUB_DOT_ITO_GAME_H
 #define DUB_DOT_ITO_GAME_H
 
+#include <utility>
 #include <vector>
 #include "player/player.h"
 #include "command/command.h"
@@ -28,24 +29,39 @@ class Game {
 private:
     std::vector<Player*> players;
     Player *dealer;
+    Player *currently_playing;
 
+    std::vector<PlayingCards*> table;
     std::vector<Card*> burned;
 
     Queue *command_queue;
 public:
     Game(std::vector<Player*> p_players, Player *p_dealer);
-    Game(std::vector<Player*> p_players) : Game(p_players, NULL) {};
+    explicit Game(std::vector<Player*> p_players) : Game(std::move(p_players), NULL) {};
     ~Game();
 
-    std::vector<Card*> get_table();
     std::vector<Player*> get_players();
     std::vector<Card*> get_burned();
+    std::vector<PlayingCards*> get_table();
 
     Player *get_next_player(Player *player);
+    Player *get_next_player();
     Player *get_previous_player(Player *player);
-    void next_player();
 
+    void set_current_player(Player *player);
+    Player *get_current_player();
+
+    /**
+     * a player appends a command, that in the next loop will be called
+     * @param command
+     */
     void append_command(Command *command);
+
+    /**
+     * returns false when the loop is supposed to end
+     * @return
+     */
+    bool loop();
 };
 
 

@@ -73,4 +73,28 @@ Player *Game::get_previous_player(Player *player) {
     return this->players.at(abs(position - 1) % count);
 }
 
+std::vector<PlayingCards *> Game::get_table() {
+    return this->table;
+}
+
+void Game::append_command(Command *command) {
+    this->command_queue->push(command);
+}
+
+bool Game::loop() {
+    return false; // the loop should end, and the game should be destroyed
+}
+
+Player *Game::get_next_player() {
+    return this->get_next_player(this->currently_playing);
+}
+
+void Game::set_current_player(Player *player) {
+    this->currently_playing = player;
+}
+
+Player *Game::get_current_player() {
+    return this->currently_playing;
+}
+
 // endregion game

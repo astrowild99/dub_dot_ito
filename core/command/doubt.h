@@ -11,6 +11,8 @@
 class Doubt : public Command {
 public:
     void execute() override;
+
+    Doubt(Player *p_player) : Command(p_player);
 };
 
 

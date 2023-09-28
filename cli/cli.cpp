@@ -3,3 +3,55 @@
 //
 
 #include "cli.h"
+#include "../core/command/doubt.h"
+#include <iostream>
+
+void Cli::init_game() {
+    std::cout << "Insert number of players " << std::endl;
+    int n_pl = 0;
+    std::cin >> n_pl;
+    std::vector<Player*> players;
+    for(int i = 0; i < n_pl; i++) {
+        std::cout << "Name: " << std::endl;
+        std::string name;
+        std::cin >> name;
+
+        auto player = new Player(name);
+        players.push_back(player);
+    }
+
+    this->game = new Game(players);
+}
+
+bool Cli::game_loop_advance (Command *p_command) {
+    if (this->game == NULL) {
+        std::cout << "Game not initialized, exiting" << std::endl;
+        throw 1;
+    }
+}
+
+Game *Cli::get_game() {
+    return this->game;
+}
+
+void Cli::print_screen() {
+    // first I print the current player hand
+    auto player = this->game->get_current_player();
+    player->printCards();
+}
+
+/**
+ * d = doubt
+ * p(<cards>) = play
+ *
+ * @param player
+ * @param input
+ * @return
+ */
+Command *Cli::create_command(Player *player, std::string input) {
+    Command *command;
+    if (input[0] == 'd') {
+        command = new Doubt(player);
+    }
+    // todo add more commands
+}

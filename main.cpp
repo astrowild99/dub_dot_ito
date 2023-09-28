@@ -1,32 +1,21 @@
 #include <iostream>
-#include "core/game.h"
+#include "cli/cli.h"
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
 
-    // region debug
+int main(int argc, const char **argv) {
+    std::cout << "Dub_dot_ito booting..." << std::endl;
+#ifdef CLI_ENABLED
+    // the cli is the main entry point for the game
+    std::cout << "booting the cli" << std::endl;
+    Cli *cli = new Cli();
+    cli->init_game();
 
-    std::cout << "Insert number of players " << std::endl;
-    int n_pl = 0;
-    std::cin >> n_pl;
-    std::vector<Player*> players;
-    for(int i = 0; i < n_pl; i++) {
-        std::cout << "Name: " << std::endl;
-        std::string name;
-        std::cin >> name;
-
-        auto player = new Player(name);
-        players.push_back(player);
+    // the cli has a single-thread, input-driven interface where the game
+    // loop is run every time a new valid command is written by the user
+    bool playing = true;
+    while (playing) {
+        std::string command;
     }
-
-    auto game = new Game(players);
-
-    for (auto p : players) {
-        std::cout << "player " << p->getName() << std::endl;
-        p->printCards();
-        std::cout << std::endl;
-    }
-
-    // endregion debug
+#endif
     return 0;
 }
