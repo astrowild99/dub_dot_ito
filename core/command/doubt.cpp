@@ -7,5 +7,3 @@
 void Doubt::execute() {
     // todo implement me
 }
-
-Doubt::Doubt(Player *p_player) : Command(p_player) {}

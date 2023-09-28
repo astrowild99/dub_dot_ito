@@ -4,6 +4,8 @@
 
 #include "cli.h"
 #include "../core/command/doubt.h"
+#include "../core/command/no_op.h"
+#include "../core/command/kill_game.h"
 #include <iostream>
 
 void Cli::init_game() {
@@ -21,6 +23,7 @@ void Cli::init_game() {
     }
 
     this->game = new Game(players);
+    this->game->set_current_player(players[0]);
 }
 
 bool Cli::game_loop_advance (Command *p_command) {
@@ -43,6 +46,7 @@ void Cli::print_screen() {
 /**
  * d = doubt
  * p(<cards>) = play
+ * k = kill game
  *
  * @param player
  * @param input
@@ -53,5 +57,13 @@ Command *Cli::create_command(Player *player, std::string input) {
     if (input[0] == 'd') {
         command = new Doubt(player);
     }
+    else if (input[0] == 'k') {
+        command = new KillGame(player);
+    }
+    else {
+        command = new NoOp(player);
+    }
     // todo add more commands
+
+    return command;
 }

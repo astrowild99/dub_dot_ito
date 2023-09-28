@@ -36,3 +36,7 @@ void Player::appendCard(Card *card) {
 std::string Player::getName() {
     return this->name;
 }
+
+void Player::printName() {
+    std::cout << "currently playing: " << this->name << std::endl;
+}

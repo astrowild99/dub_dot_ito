@@ -22,7 +22,9 @@ public:
 
     void setCards(std::vector<Card*> p_cards);
     void appendCard(Card *card);
+
     void printCards();
+    void printName();
 
     std::string getName();
 };
