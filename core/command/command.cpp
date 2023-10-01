@@ -4,6 +4,8 @@
 
 #include "command.h"
 
+using namespace Core;
+
 Player *Command::get_player() {
     return this->player;
 }

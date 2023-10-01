@@ -3,3 +3,9 @@
 //
 
 #include "playing.h"
+
+using namespace Core;
+
+std::string playing::get_state_message() {
+    return "playing";
+}

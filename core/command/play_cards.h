@@ -10,12 +10,17 @@
 #include "command.h"
 #include "../card/card.h"
 
-class PlayCards : public Command {
-private:
-    std::vector<Card*> cards;
-public:
-    void execute() override;
-};
+namespace Core {
 
+    class PlayCards : public Command {
+    private:
+        std::vector<Card *> cards;
+    public:
+        bool execute(Game *p_game) override;
+
+        PlayCards(Player *p_player, std::vector<Card *> p_cards);
+    };
+
+}
 
 #endif //DUB_DOT_ITO_PLAY_CARDS_H

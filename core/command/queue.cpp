@@ -4,6 +4,9 @@
 
 #include <stdexcept>
 #include "queue.h"
+#include "command.h"
+
+using namespace Core;
 
 Command *Queue::next() {
     auto command = this->queue.at(this->next_ptr);

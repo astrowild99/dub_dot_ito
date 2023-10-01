@@ -7,11 +7,15 @@
 
 #include "command.h"
 
-class KillGame : public Command {
-public:
-    explicit KillGame(Player *p_player) : Command(p_player) {};
-    void execute();
-};
+namespace Core {
 
+    class KillGame : public Command {
+    public:
+        explicit KillGame(Player *p_player) : Command(p_player) {};
+
+        bool execute(Game *p_game) override;
+    };
+
+}
 
 #endif //DUB_DOT_ITO_KILL_GAME_H

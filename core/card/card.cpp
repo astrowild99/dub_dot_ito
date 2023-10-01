@@ -7,6 +7,8 @@
 #include <random>
 #include <iostream>
 
+using namespace Core;
+
 // region card
 
 Card::Card(CardSeed p_seed, CardValue p_value) {

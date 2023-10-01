@@ -4,6 +4,12 @@
 
 #include "play_cards.h"
 
-void PlayCards::execute() {
-    // todo implement this method
+using namespace Core;
+
+bool PlayCards::execute(Game *p_game) {
+    return true;
+}
+
+PlayCards::PlayCards(Player *p_player, std::vector<Card *> p_cards) : Command(p_player) {
+    this->cards = p_cards;
 }

@@ -4,6 +4,8 @@
 
 #include "no_op.h"
 
-void NoOp::execute() {
-    // this actually does nothing
+using namespace Core;
+
+bool NoOp::execute(Game *p_game) {
+    return true;
 }

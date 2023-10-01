@@ -8,6 +8,8 @@
 #include "../../../core/command/no_op.h"
 #include "../../../core/command/queue.h"
 
+using namespace Core;
+
 TEST_CASE("[queue] add to queue") {
     Player *player = new Player("test");
     Command *a = new NoOp(player);

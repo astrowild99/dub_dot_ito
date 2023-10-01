@@ -4,6 +4,8 @@
 
 #include "doubt.h"
 
-void Doubt::execute() {
-    // todo implement me
+using namespace Core;
+
+bool Doubt::execute(Game *p_game) {
+    return true;
 }

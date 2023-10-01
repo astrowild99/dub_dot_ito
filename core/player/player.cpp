@@ -6,6 +6,8 @@
 #include "player.h"
 #include "state/idle.h"
 
+using namespace Core;
+
 Player::Player(std::string p_name) {
     this->state = new Idle();
     this->cards = {};
@@ -17,11 +19,11 @@ Player::~Player() {
     this->cards.clear();
 }
 
-void Player::setCards(std::vector<Card *> p_cards) {
+void Player::set_cards(std::vector<Card *> p_cards) {
     this->cards = p_cards;
 }
 
-void Player::printCards() {
+void Player::print_cards() {
     for(Card *c : this->cards) {
         std::cout << "";
         c->print();
@@ -29,14 +31,18 @@ void Player::printCards() {
     }
 }
 
-void Player::appendCard(Card *card) {
+void Player::append_card(Card *card) {
     this->cards.push_back(card);
 }
 
-std::string Player::getName() {
+std::string Player::get_name() {
     return this->name;
 }
 
-void Player::printName() {
+void Player::print_name() {
     std::cout << "currently playing: " << this->name << std::endl;
+}
+
+std::vector<Card *> Player::get_cards() {
+    return this->cards;
 }

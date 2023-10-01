@@ -8,12 +8,16 @@
 
 #include "command.h"
 
-class Doubt : public Command {
-public:
-    void execute() override;
+namespace Core {
 
-    explicit Doubt(Player *p_player) : Command(p_player) {};
-};
+    class Doubt : public Command {
+    public:
+        bool execute(Game *p_game) override;
+
+        explicit Doubt(Player *p_player) : Command(p_player) {};
+    };
+
+}
 
 
 #endif //DUB_DOT_ITO_DOUBT_H

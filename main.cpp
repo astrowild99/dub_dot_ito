@@ -16,8 +16,8 @@ int main(int argc, const char **argv) {
     Player *playing_player;
     while (playing) {
         playing_player = cli->get_game()->get_current_player();
-        playing_player->printName();
-        playing_player->printCards();
+        playing_player->print_name();
+        playing_player->print_cards();
 
         std::string command_string;
         std::cout << "enter command for player" << std::endl;

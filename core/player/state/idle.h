@@ -8,13 +8,18 @@
 
 #include "player_state_interface.h"
 
-class Idle : public PlayerStateInterface {
-public:
-    Idle();
-    ~Idle();
+namespace Core {
 
-    std::string getStateMessage();
-};
+    class Idle : public PlayerStateInterface {
+    public:
+        Idle();
+
+        ~Idle();
+
+        std::string get_state_message() override;
+    };
+
+}
 
 
 #endif //DUB_DOT_ITO_IDLE_H

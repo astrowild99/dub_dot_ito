@@ -4,10 +4,12 @@
 
 #include "idle.h"
 
+using namespace Core;
+
 Idle::Idle() = default;
 
 Idle::~Idle() = default;
 
-std::string Idle::getStateMessage() {
+std::string Idle::get_state_message() {
     return "Awaiting for my turn";
 }

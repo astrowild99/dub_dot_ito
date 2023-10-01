@@ -4,6 +4,8 @@
 
 #include "game.h"
 
+using namespace Core;
+
 // region playing cards
 
 PlayingCards::PlayingCards(Player *p_player, std::vector<Card *> p_cards) {
@@ -18,7 +20,7 @@ PlayingCards::PlayingCards(Player *p_player, std::vector<Card *> p_cards) {
  */
 void PlayingCards::distribute(Player *p_player) {
     for(Card *c: this->cards) {
-        p_player->appendCard(c);
+        p_player->append_card(c);
     }
 }
 
@@ -37,10 +39,11 @@ Game::Game(std::vector<Player *> p_players, Player *p_dealer) {
     for (std::vector<Card*> d : decks) {
         if (j == 0 && !p_dealer)
             p_dealer = p_players.at(j);
-        p_players.at(j)->setCards(d);
+        p_players.at(j)->set_cards(d);
         j++;
     }
     this->dealer = p_dealer;
+    this->currently_playing = this->get_next_player(this->dealer);
 }
 
 Game::~Game() = default;
@@ -81,10 +84,6 @@ void Game::append_command(Command *command) {
     this->command_queue->push(command);
 }
 
-bool Game::loop() {
-    return false; // the loop should end, and the game should be destroyed
-}
-
 Player *Game::get_next_player() {
     return this->get_next_player(this->currently_playing);
 }
@@ -95,6 +94,18 @@ void Game::set_current_player(Player *player) {
 
 Player *Game::get_current_player() {
     return this->currently_playing;
+}
+
+bool Game::dispatch_command(Command *p_command) {
+    return true; // todo implement me
+}
+
+bool Game::next() {
+    return true; // todo implement me
+}
+
+Player *Game::get_dealer() {
+    return this->dealer;
 }
 
 // endregion game

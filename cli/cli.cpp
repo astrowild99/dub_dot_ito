@@ -31,6 +31,8 @@ bool Cli::game_loop_advance (Command *p_command) {
         std::cout << "Game not initialized, exiting" << std::endl;
         throw 1;
     }
+
+    this->game->append_command(p_command);
 }
 
 Game *Cli::get_game() {
@@ -40,7 +42,7 @@ Game *Cli::get_game() {
 void Cli::print_screen() {
     // first I print the current player hand
     auto player = this->game->get_current_player();
-    player->printCards();
+    player->print_cards();
 }
 
 /**

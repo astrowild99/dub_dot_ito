@@ -10,24 +10,33 @@
 #include "../card/card.h"
 #include "state/player_state_interface.h"
 
-class Player {
-private:
-    std::string name;
-    std::vector<Card*> cards;
-    PlayerStateInterface *state;
+namespace Core {
 
-public:
-    Player(std::string p_name);
-    ~Player();
+    class Player {
+    private:
+        std::string name;
+        std::vector<Card *> cards;
+        PlayerStateInterface *state;
 
-    void setCards(std::vector<Card*> p_cards);
-    void appendCard(Card *card);
+    public:
+        Player(std::string p_name);
 
-    void printCards();
-    void printName();
+        ~Player();
 
-    std::string getName();
-};
+        void set_cards(std::vector<Card *> p_cards);
+
+        std::vector<Card *> get_cards();
+
+        void append_card(Card *card);
+
+        void print_cards();
+
+        void print_name();
+
+        std::string get_name();
+    };
+
+}
 
 
 #endif //DUB_DOT_ITO_PLAYER_H

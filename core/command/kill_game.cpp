@@ -4,6 +4,8 @@
 
 #include "kill_game.h"
 
-void KillGame::execute() {
+using namespace Core;
 
+bool KillGame::execute(Game *p_game) {
+    return true;
 }

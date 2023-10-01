@@ -8,25 +8,32 @@
 
 #include <vector>
 #include <map>
-#include "command.h"
+#include "../player/player.h"
 
-class Queue {
-private:
-    std::vector<Command*> queue;
-    int next_ptr = 0;
-    std::map<Player*, int> next_player_ptr;
+namespace Core {
+    class Command;
 
-protected:
-    std::vector<Command*> filter_by_player(Player *p_player);
+    class Queue {
+    private:
+        std::vector<Command*> queue;
+        int next_ptr = 0;
+        std::map<Player *, int> next_player_ptr;
 
-public:
-    Command *next();
-    Command *next(Player *p_player);
-    void push(Command *p_command);
+    protected:
+        std::vector<Command*> filter_by_player(Player *p_player);
 
-    int get_next_queue_size();
-    int get_next_queue_size(Player *p_player);
-};
+    public:
+        Command *next();
 
+        Command *next(Player *p_player);
+
+        void push(Command *p_command);
+
+        int get_next_queue_size();
+
+        int get_next_queue_size(Player *p_player);
+    };
+
+}
 
 #endif //DUB_DOT_ITO_QUEUE_H

@@ -6,9 +6,14 @@
 #define DUB_DOT_ITO_PLAYING_H
 
 
-class playing {
+#include "player_state_interface.h"
 
-};
+namespace Core {
+
+    class playing : public PlayerStateInterface {
+        std::string get_state_message() override;
+    };
+}
 
 
 #endif //DUB_DOT_ITO_PLAYING_H
