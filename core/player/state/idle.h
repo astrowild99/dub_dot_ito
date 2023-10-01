@@ -17,6 +17,7 @@ namespace Core {
         ~Idle();
 
         std::string get_state_message() override;
+        std::string available_commands_string() override;
     };
 
 }

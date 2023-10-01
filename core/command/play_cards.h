@@ -12,13 +12,15 @@
 
 namespace Core {
 
-    class PlayCards : public Command {
+    class PlayCards : public virtual Command {
     private:
         std::vector<Card *> cards;
+        CardValue declared_value;
     public:
         bool execute(Game *p_game) override;
 
-        PlayCards(Player *p_player, std::vector<Card *> p_cards);
+        PlayCards(Player *p_player, std::vector<Card *> p_cards, CardValue p_declared_value);
+        explicit PlayCards(Player *p_player, std::vector<Card *> p_cards) : PlayCards(p_player, std::move(p_cards), CardValue::null) {};
     };
 
 }

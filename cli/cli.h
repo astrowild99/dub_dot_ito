@@ -9,17 +9,17 @@
 
 
 class Cli {
-    Game *game;
+    Core::Game *game;
 public:
     void init_game();
-    bool game_loop_advance(Command *command);
+    bool game_loop_advance(Core::Command *command);
 
     void print_screen();
 
     // region command
-    Command *create_command(Player *player, std::string input);
+    Core::Command *create_command(Core::Player *player, std::string input);
     // endregion command
-    Game *get_game();
+    Core::Game *get_game();
 };
 
 

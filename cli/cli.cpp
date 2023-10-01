@@ -12,21 +12,21 @@ void Cli::init_game() {
     std::cout << "Insert number of players " << std::endl;
     int n_pl = 0;
     std::cin >> n_pl;
-    std::vector<Player*> players;
+    std::vector<Core::Player*> players;
     for(int i = 0; i < n_pl; i++) {
         std::cout << "Name: " << std::endl;
         std::string name;
         std::cin >> name;
 
-        auto player = new Player(name);
+        auto player = new Core::Player(name);
         players.push_back(player);
     }
 
-    this->game = new Game(players);
+    this->game = new Core::Game(players);
     this->game->set_current_player(players[0]);
 }
 
-bool Cli::game_loop_advance (Command *p_command) {
+bool Cli::game_loop_advance (Core::Command *p_command) {
     if (this->game == NULL) {
         std::cout << "Game not initialized, exiting" << std::endl;
         throw 1;
@@ -35,7 +35,7 @@ bool Cli::game_loop_advance (Command *p_command) {
     this->game->append_command(p_command);
 }
 
-Game *Cli::get_game() {
+Core::Game *Cli::get_game() {
     return this->game;
 }
 
@@ -54,16 +54,16 @@ void Cli::print_screen() {
  * @param input
  * @return
  */
-Command *Cli::create_command(Player *player, std::string input) {
-    Command *command;
+Core::Command *Cli::create_command(Core::Player *player, std::string input) {
+    Core::Command *command;
     if (input[0] == 'd') {
-        command = new Doubt(player);
+        command = new Core::Doubt(player);
     }
     else if (input[0] == 'k') {
-        command = new KillGame(player);
+        command = new Core::KillGame(player);
     }
     else {
-        command = new NoOp(player);
+        command = new Core::NoOp(player);
     }
     // todo add more commands
 

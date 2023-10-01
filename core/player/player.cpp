@@ -35,6 +35,14 @@ void Player::append_card(Card *card) {
     this->cards.push_back(card);
 }
 
+void Player::remove_card(Core::Card *card) {
+    for (int i = 0; i < this->cards.size(); i++) {
+        auto c = this->cards.at(i);
+        if (c == card)
+            this->cards.erase(this->cards.begin() + i);
+    }
+}
+
 std::string Player::get_name() {
     return this->name;
 }

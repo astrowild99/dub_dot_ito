@@ -8,6 +8,7 @@
 #include "../../thirdparty/doctest.h"
 #include "../../core/game.h"
 #include "../../core/player/player.h"
+#include "../../core/command/play_cards.h"
 #include <vector>
 #include <string>
 
@@ -48,17 +49,34 @@ TEST_CASE("[core] first play") {
     players.push_back(player2);
 
     Game *game = new Game(players);
+    CHECK(game->get_currently_declared_value() == CardValue::null);
 
     // first I check the basic game setup
     auto current_player = game->get_current_player();
     CHECK(current_player == player2);
     auto dealer = game->get_dealer();
     CHECK(dealer == player1);
-    auto cards1 = current_player->get_cards();
+    auto cards2 = current_player->get_cards();
     // I should have 27 cards
-    CHECK(cards1.size() == 27);
+    CHECK(cards2.size() == 27);
 
     // then I launch the first command
-    // todo continue from here
+    std::vector<Card*> playing;
+    for (int i = 0; i < 2; i++) {
+        playing.push_back(cards2.at(i));
+    }
+    auto play_cards = new PlayCards(player2, playing, CardValue::one);
+    game->append_command(play_cards);
+    game->next();
+
+    // at this point it should have changed
+    CHECK(game->get_current_player() == player1);
+    CHECK(game->get_next_player() == player2);
+    cards2 = game->get_next_player()->get_cards();
+    CHECK(cards2.size() == 25);
+    auto table = game->get_table();
+    CHECK(table.size() == 1);
+    CHECK(table.at(0)->get_cards().size() == 2);
+    CHECK(game->get_currently_declared_value() == CardValue::one);
 }
 #endif //DUB_DOT_ITO_TEST_GAME_CPP

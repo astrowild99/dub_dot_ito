@@ -24,11 +24,18 @@ void PlayingCards::distribute(Player *p_player) {
     }
 }
 
+std::vector<Card *> PlayingCards::get_cards() {
+    return this->cards;
+}
+
 // endregion playing cards
 
 // region game
 
 Game::Game(std::vector<Player *> p_players, Player *p_dealer) {
+    this->command_queue = new Queue();
+    this->currently_declared_value = CardValue::null;
+
     auto card_factory = CardFactory::getSingleton();
     this->players = p_players;
     auto deck = card_factory->createDeck();
@@ -97,15 +104,37 @@ Player *Game::get_current_player() {
 }
 
 bool Game::dispatch_command(Command *p_command) {
-    return true; // todo implement me
+//    p_command->execute(this);
 }
 
 bool Game::next() {
-    return true; // todo implement me
+    auto command = this->command_queue->next();
+    this->dispatch_command(command);
+    this->currently_playing = this->get_next_player();
 }
 
 Player *Game::get_dealer() {
     return this->dealer;
+}
+
+CardValue Game::get_currently_declared_value() {
+    if (this->table.empty())
+        return CardValue::null;
+    return this->currently_declared_value;
+}
+
+void Game::set_currently_declared_value(CardValue p_value) {
+    if (!this->table.empty()) {
+        return; // you cannot change the declared value when the table is not empty
+    }
+    if (p_value == CardValue::null) {
+        // todo study how to throw exception
+    }
+    this->currently_declared_value = p_value;
+}
+
+void Game::play_cards(PlayingCards *cards) {
+
 }
 
 // endregion game

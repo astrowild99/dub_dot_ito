@@ -12,7 +12,7 @@ namespace Core {
 /**
  * a simple mock command that just does nothing in the execute
  */
-    class NoOp : public Command {
+    class NoOp : public virtual Command {
     public:
         bool execute(Game *p_game) override;
 

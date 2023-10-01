@@ -9,7 +9,7 @@
 
 namespace Core {
 
-    class KillGame : public Command {
+    class KillGame : public virtual Command {
     public:
         explicit KillGame(Player *p_player) : Command(p_player) {};
 

@@ -28,6 +28,7 @@ namespace Core {
         std::vector<Card *> get_cards();
 
         void append_card(Card *card);
+        void remove_card(Card *card);
 
         void print_cards();
 

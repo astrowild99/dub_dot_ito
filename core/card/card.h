@@ -24,7 +24,8 @@ namespace Core {
         jack = 11, // j
         queen = 12, // q
         king = 13, // k
-        joker = 14 // j
+        joker = 14, // j
+        null = 99, // used when the table is empty
     };
 
     enum CardSeed {

@@ -12,6 +12,7 @@ namespace Core {
     class PlayerStateInterface {
     public:
         virtual std::string get_state_message() = 0;
+        virtual std::string available_commands_string() = 0;
     };
 
 }

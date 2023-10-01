@@ -13,3 +13,7 @@ Idle::~Idle() = default;
 std::string Idle::get_state_message() {
     return "Awaiting for my turn";
 }
+
+std::string Idle::available_commands_string() {
+    return "";
+}

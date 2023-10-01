@@ -10,7 +10,7 @@
 
 namespace Core {
 
-    class Doubt : public Command {
+    class Doubt : public virtual Command {
     public:
         bool execute(Game *p_game) override;
 

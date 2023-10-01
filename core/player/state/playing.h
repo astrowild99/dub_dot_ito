@@ -12,6 +12,7 @@ namespace Core {
 
     class playing : public PlayerStateInterface {
         std::string get_state_message() override;
+        std::string available_commands_string() override;
     };
 }
 
