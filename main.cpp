@@ -13,7 +13,7 @@ int main(int argc, const char **argv) {
     // the cli has a single-thread, input-driven interface where the game
     // loop is run every time a new valid command is written by the user
     bool playing = true;
-    Player *playing_player;
+    Core::Player *playing_player;
     while (playing) {
         playing_player = cli->get_game()->get_current_player();
         playing_player->print_name();

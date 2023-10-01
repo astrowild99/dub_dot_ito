@@ -29,6 +29,7 @@ void Player::print_cards() {
         c->print();
         std::cout << ", ";
     }
+    std::cout << std::endl;
 }
 
 void Player::append_card(Card *card) {
