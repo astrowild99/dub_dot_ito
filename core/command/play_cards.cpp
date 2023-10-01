@@ -32,3 +32,11 @@ PlayCards::PlayCards(Player *p_player, std::vector<Card *> p_cards, CardValue p_
     this->cards = p_cards;
     this->declared_value = p_declared_value;
 }
+
+std::vector<Card *> PlayCards::get_cards() {
+    return this->cards;
+}
+
+CardValue PlayCards::get_declared_value() {
+    return this->declared_value;
+}

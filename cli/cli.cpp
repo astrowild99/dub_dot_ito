@@ -3,12 +3,10 @@
 //
 
 #include "cli.h"
-#include "../core/command/doubt.h"
-#include "../core/command/no_op.h"
-#include "../core/command/kill_game.h"
+#include "command_reader.h"
 #include <iostream>
 
-void Cli::init_game() {
+void Cli::CliInterface::init_game() {
     std::cout << "Insert number of players " << std::endl;
     int n_pl = 0;
     std::cin >> n_pl;
@@ -26,20 +24,22 @@ void Cli::init_game() {
     this->game->set_current_player(players[0]);
 }
 
-bool Cli::game_loop_advance (Core::Command *p_command) {
+bool Cli::CliInterface::game_loop_advance (Core::Command *p_command) {
     if (this->game == NULL) {
         std::cout << "Game not initialized, exiting" << std::endl;
         throw 1;
     }
 
     this->game->append_command(p_command);
+    // todo continue here
+    return true;
 }
 
-Core::Game *Cli::get_game() {
+Core::Game *Cli::CliInterface::get_game() {
     return this->game;
 }
 
-void Cli::print_screen() {
+void Cli::CliInterface::print_screen() {
     // first I print the current player hand
     auto player = this->game->get_current_player();
     player->print_cards();
@@ -54,18 +54,6 @@ void Cli::print_screen() {
  * @param input
  * @return
  */
-Core::Command *Cli::create_command(Core::Player *player, std::string input) {
-    Core::Command *command;
-    if (input[0] == 'd') {
-        command = new Core::Doubt(player);
-    }
-    else if (input[0] == 'k') {
-        command = new Core::KillGame(player);
-    }
-    else {
-        command = new Core::NoOp(player);
-    }
-    // todo add more commands
-
-    return command;
+Core::Command *Cli::CliInterface::create_command(Core::Player *player, std::string input) {
+    return Cli::CommandReader::read(player, input);
 }

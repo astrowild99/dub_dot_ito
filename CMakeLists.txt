@@ -17,11 +17,16 @@ if(cli)
         ${CLI_HEADERS}
         ${CLI_SOURCES}
     )
+    add_executable(tests
+        ${CLI_HEADERS}
+        ${CLI_SOURCES}
+    )
 elseif (gui)
     add_definitions(-DGUI_ENABLED)
 
     # todo gui
     add_executable(dub_dot_ito)
+    add_executable(tests)
 endif ()
 
 # region core
@@ -38,11 +43,11 @@ target_sources(dub_dot_ito
 
 # region tests
 file(GLOB_RECURSE TESTS RELATIVE ${CMAKE_SOURCE_DIR} "tests/*.cpp")
-add_executable(tests
-        thirdparty/doctest.h
-        ${HEADERS}
-        ${SOURCES}
-        ${TESTS}
+target_sources(tests
+        PUBLIC thirdparty/doctest.h
+        PUBLIC ${HEADERS}
+        PUBLIC ${SOURCES}
+        PUBLIC ${TESTS}
 )
 # endregion tests
 target_compile_features(tests PRIVATE cxx_std_17)

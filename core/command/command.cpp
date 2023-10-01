@@ -13,3 +13,11 @@ Player *Command::get_player() {
 Command::Command(Player *p_player) {
     this->player = p_player;
 }
+
+std::vector<Card *> Command::get_cards() {
+    return {};
+}
+
+CardValue Command::get_declared_value() {
+    return Core::CardValue::null;
+}

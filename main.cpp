@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cli/cli.h"
+#include <cstdio>
 
 
 int main(int argc, const char **argv) {
@@ -7,7 +8,7 @@ int main(int argc, const char **argv) {
 #ifdef CLI_ENABLED
     // the cli is the main entry point for the game
     std::cout << "booting the cli" << std::endl;
-    Cli *cli = new Cli();
+    auto *cli = new Cli::CliInterface();
     cli->init_game();
 
     // the cli has a single-thread, input-driven interface where the game
@@ -19,11 +20,11 @@ int main(int argc, const char **argv) {
         playing_player->print_name();
         playing_player->print_cards();
 
-        std::string command_string;
-        std::cout << "enter command for player" << std::endl;
-        std::cin >> command_string;
+        char command_string[101];
+        std::cout << "enter command for player: " << std::endl;
+        scanf("%s\n", command_string);
 
-        auto command = cli->create_command(playing_player, command_string);
+        auto command = cli->create_command(playing_player, std::string(command_string));
 
         playing = cli->game_loop_advance(command);
 

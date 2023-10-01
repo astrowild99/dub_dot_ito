@@ -26,6 +26,11 @@ namespace Core {
         Player *get_player();
 
         explicit Command(Player *p_player);
+
+        // region debug
+        virtual std::vector<Card*> get_cards();
+        virtual CardValue get_declared_value();
+        // endregion debug
     };
 
 }

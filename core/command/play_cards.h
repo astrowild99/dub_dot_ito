@@ -21,6 +21,11 @@ namespace Core {
 
         PlayCards(Player *p_player, std::vector<Card *> p_cards, CardValue p_declared_value);
         explicit PlayCards(Player *p_player, std::vector<Card *> p_cards) : PlayCards(p_player, std::move(p_cards), CardValue::null) {};
+
+        // region debug
+        std::vector<Card*> get_cards() override;
+        CardValue get_declared_value() override;
+        // endregion debug
     };
 
 }
