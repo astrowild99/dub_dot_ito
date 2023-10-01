@@ -3,6 +3,7 @@
 //
 
 #include "play_cards.h"
+#include "../game.h"
 
 using namespace Core;
 

@@ -6,10 +6,9 @@
 #define DUB_DOT_ITO_COMMAND_H
 
 #include "../player/player.h"
-#include "../game.h"
 
 namespace Core {
-
+    class Game;
 /**
  * the commands hold in themselves the player who executes them
  */

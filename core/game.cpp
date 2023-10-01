@@ -3,6 +3,7 @@
 //
 
 #include "game.h"
+#include "command/queue.h"
 
 using namespace Core;
 
@@ -104,13 +105,15 @@ Player *Game::get_current_player() {
 }
 
 bool Game::dispatch_command(Command *p_command) {
-//    p_command->execute(this);
+    return p_command->execute(this);
 }
 
 bool Game::next() {
     auto command = this->command_queue->next();
-    this->dispatch_command(command);
+    auto still_playing = this->dispatch_command(command);
     this->currently_playing = this->get_next_player();
+
+    return still_playing;
 }
 
 Player *Game::get_dealer() {
@@ -134,7 +137,7 @@ void Game::set_currently_declared_value(CardValue p_value) {
 }
 
 void Game::play_cards(PlayingCards *cards) {
-
+    this->table.push_back(cards);
 }
 
 // endregion game

@@ -8,9 +8,10 @@
 #include <utility>
 #include <vector>
 #include "player/player.h"
-#include "command/queue.h"
+#include "command/command.h"
 
 namespace Core {
+    class Queue;
     class PlayingCards {
     private:
         Player *player;
