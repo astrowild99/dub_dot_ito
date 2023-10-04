@@ -19,6 +19,12 @@ namespace Cli {
         static std::vector<std::string> explode(const std::string& p_command, const char& p_needle);
         static bool is_numeric(const std::string& p_argument);
         // endregion string utils
+        /**
+         * @throws CommandException
+         * @param p_player
+         * @param p_command
+         * @return
+         */
         static Core::Command *read(Core::Player *p_player, std::string p_command);
         static Core::CardValue read_card_value(std::string p_card_name);
     };

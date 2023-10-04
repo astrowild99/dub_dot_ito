@@ -47,6 +47,8 @@ namespace Core {
         void print();
 
         std::string toString();
+
+        static std::string print_card_value(CardValue value);
     };
 
     class CardFactory {

@@ -140,4 +140,11 @@ void Game::play_cards(PlayingCards *cards) {
     this->table.push_back(cards);
 }
 
+FieldInfo Game::get_field_info() {
+    return {
+        this->currently_declared_value,
+        this->table
+    };
+}
+
 // endregion game

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cli/cli.h"
+#include "core/exception/command_exception.h"
 #include <cstdio>
 
 
@@ -22,7 +23,11 @@ int main(int argc, const char **argv) {
     std::cin.getline(check, 1);
 
     while (playing) {
-        playing_player = cli->get_game()->get_current_player();
+        auto game = cli->get_game();
+        playing_player = game->get_current_player();
+
+        cli->present_field();
+
         playing_player->print_name();
         playing_player->print_cards();
 
@@ -30,9 +35,13 @@ int main(int argc, const char **argv) {
         std::cout << "enter command for player: " << std::endl;
         std::cin.getline(command_string, 100);
 
-        auto command = cli->create_command(playing_player, std::string(command_string));
-
-        playing = cli->game_loop_advance(command);
+        try {
+            auto command = cli->create_command(playing_player, std::string(command_string));
+            playing = cli->game_loop_advance(command);
+        } catch (Core::CommandException &e) {
+            std::cout << "The command is invalid: " << e.what() << std::endl;
+            continue;
+        }
 
         cli->get_game()->set_current_player(cli->get_game()->get_next_player());
     }

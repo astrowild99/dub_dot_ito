@@ -62,6 +62,21 @@ void Card::print() {
     std::cout << this->toString();
 }
 
+std::string Card::print_card_value(CardValue value) {
+    switch (value) {
+        case CardValue::joker:
+            return "jolly";
+        case CardValue::jack:
+            return "j";
+        case CardValue::queen:
+            return "q";
+        case CardValue::king:
+            return "k";
+        default:
+            return std::to_string(value);
+    }
+}
+
 // endregion card
 
 // region factory

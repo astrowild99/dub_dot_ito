@@ -24,6 +24,14 @@ namespace Core {
         std::vector<Card*> get_cards();
     };
 
+    /**
+     * this is used to present the current status of the field
+     */
+    struct FieldInfo {
+        CardValue currently_declared_value;
+        std::vector<PlayingCards *> table;
+    };
+
 /**
  * this is a single instance of a game
  * that is being played
@@ -92,6 +100,8 @@ namespace Core {
         CardValue get_currently_declared_value();
 
         void set_currently_declared_value(CardValue p_value);
+
+        FieldInfo get_field_info();
 
         // endregion cards flow
 

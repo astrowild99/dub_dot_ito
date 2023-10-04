@@ -7,6 +7,7 @@
 #include "../core/command/no_op.h"
 #include "../core/command/kill_game.h"
 #include "../core/command/play_cards.h"
+#include "../core/exception/command_exception.h"
 
 using namespace Cli;
 
@@ -68,7 +69,7 @@ Core::Command *Cli::CommandReader::read(Core::Player *p_player, std::string p_co
         return new Core::PlayCards(p_player, selected_cards, declared_value);
     }
     else {
-        command = new Core::NoOp(p_player);
+        throw Core::CommandException("the command is not recognized");
     }
     // todo add more commands
 

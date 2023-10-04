@@ -23,6 +23,10 @@ namespace Cli {
 
         // endregion command
         Core::Game *get_game();
+
+        // region field
+        void present_field();
+        // endregion field
     };
 }
 
