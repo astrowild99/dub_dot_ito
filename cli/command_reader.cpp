@@ -53,7 +53,6 @@ Core::Command *Cli::CommandReader::read(Core::Player *p_player, std::string p_co
             }
         }
         if (selected_positions.empty()) {
-            // todo see how to handle exceptions
             return new Core::NoOp(p_player);
         }
 
@@ -62,7 +61,9 @@ Core::Command *Cli::CommandReader::read(Core::Player *p_player, std::string p_co
         auto deck = p_player->get_cards();
         int len = deck.size();
         for (int pos : selected_positions) {
-            if (len < pos) continue; // todo see how to handle exceptions
+            if (len < pos) {
+                throw Core::CommandException("you don't have any card at position " + std::to_string(pos));
+            }
             selected_cards.push_back(deck.at(pos));
         }
 

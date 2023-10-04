@@ -4,12 +4,13 @@
 
 #include "play_cards.h"
 #include "../game.h"
+#include "../exception/command_exception.h"
 
 using namespace Core;
 
 bool PlayCards::execute(Game *p_game) {
-    if (this->cards.size() <= 0) {
-        // todo study how to throw exceptions
+    if (this->cards.empty()) {
+        throw CommandException("you should specify at least one card to play");
     }
 
     // then first I try to retrieve the currently declared value

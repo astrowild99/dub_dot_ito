@@ -59,9 +59,6 @@ Core::Command *Cli::CliInterface::create_command(Core::Player *player, std::stri
 }
 
 void Cli::CliInterface::present_field() {
-    if (this->game == NULL) {
-        // todo study how to throw exceptions
-    }
     auto field_info = this->game->get_field_info();
     if (field_info.table.empty()) {
         std::cout << "The table is empty, pick your card with command p <card_name> <index of card> <...>" << std::endl;
