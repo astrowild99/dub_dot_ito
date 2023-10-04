@@ -12,7 +12,7 @@
 
 using namespace Cli;
 
-TEST_CASE("[cli] test command reader") {
+TEST_CASE("[cli] test command reader play cards") {
     auto *player = new Core::Player("cici");
     auto deck_factory = Core::CardFactory::getSingleton();
     auto deck = deck_factory->createDeck(); // it will always start with the hearths, it is not shuffled

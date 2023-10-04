@@ -31,7 +31,6 @@ namespace Core {
         void remove_card(Card *card);
 
         void print_cards();
-
         void print_name();
 
         std::string get_name();

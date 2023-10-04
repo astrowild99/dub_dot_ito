@@ -42,7 +42,6 @@ namespace Core {
         CardValue value;
     public:
         Card(CardSeed p_seed, CardValue p_value);
-
         ~Card();
 
         void print();
@@ -53,7 +52,6 @@ namespace Core {
     class CardFactory {
     private:
         inline static CardFactory *singleton = NULL;
-
         CardFactory();
 
         // random

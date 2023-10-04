@@ -13,7 +13,6 @@ namespace Core {
     class Idle : public PlayerStateInterface {
     public:
         Idle();
-
         ~Idle();
 
         std::string get_state_message() override;

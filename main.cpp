@@ -15,6 +15,12 @@ int main(int argc, const char **argv) {
     // loop is run every time a new valid command is written by the user
     bool playing = true;
     Core::Player *playing_player;
+
+    // I am forced to mock this variable to read
+    char check[2] = "y";
+    std::cout << "ready? [Y/n]" << std::endl;
+    std::cin.getline(check, 1);
+
     while (playing) {
         playing_player = cli->get_game()->get_current_player();
         playing_player->print_name();
@@ -22,7 +28,7 @@ int main(int argc, const char **argv) {
 
         char command_string[101];
         std::cout << "enter command for player: " << std::endl;
-        scanf("%s\n", command_string);
+        std::cin.getline(command_string, 100);
 
         auto command = cli->create_command(playing_player, std::string(command_string));
 
