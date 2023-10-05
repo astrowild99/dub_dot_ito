@@ -2,8 +2,10 @@
 // Created by donato on 16/09/23.
 //
 
+#include <iostream>
 #include "game.h"
 #include "command/queue.h"
+#include "exception/command_exception.h"
 
 using namespace Core;
 
@@ -14,19 +16,26 @@ PlayingCards::PlayingCards(Player *p_player, std::vector<Card *> p_cards) {
     this->cards = p_cards;
 }
 
-/**
- * the cards here are simply distributed, it is the destructor that needs
- * to unset the playing card itself
- * @param p_player
- */
-void PlayingCards::distribute(Player *p_player) {
-    for(Card *c: this->cards) {
-        p_player->append_card(c);
-    }
-}
-
 std::vector<Card *> PlayingCards::get_cards() {
     return this->cards;
+}
+
+bool PlayingCards::check(CardValue expected_value) {
+    bool is_same = true;
+    CardValue current_value = CardValue::null;
+    for (Card *c : this->cards) {
+        if (current_value == CardValue::null) {
+            current_value = c->get_value();
+        } else if (current_value != c->get_value()) {
+            is_same = false;
+        }
+    }
+
+    return is_same && current_value == expected_value;
+}
+
+Player *PlayingCards::get_player() {
+    return this->player;
 }
 
 // endregion playing cards
@@ -110,10 +119,16 @@ bool Game::dispatch_command(Command *p_command) {
 
 bool Game::next() {
     auto command = this->command_queue->next();
-    auto still_playing = this->dispatch_command(command);
-    this->currently_playing = this->get_next_player();
+    try {
+        auto move_to_next_player = this->dispatch_command(command);
+        if (move_to_next_player)
+            this->currently_playing = this->get_next_player();
+    } catch (CommandException &e) {
+        std::cout << "An exception occurred: " << e.what() << std::endl;
+        return false;
+    }
 
-    return still_playing;
+    return true; // it is still playing
 }
 
 Player *Game::get_dealer() {
@@ -152,6 +167,20 @@ FieldInfo Game::get_field_info() {
         this->table,
         count
     };
+}
+
+PlayingCards *Game::last_played_cards() {
+    return this->table.at(this->table.size() - 1);
+}
+
+void Game::distribute_cards(Player *p_player) {
+    for (auto *playing_cards : this->table) {
+        for (auto *card : playing_cards->get_cards()) {
+            p_player->append_card(card);
+        }
+    }
+    this->table.clear();
+    this->currently_declared_value = CardValue::null;
 }
 
 // endregion game

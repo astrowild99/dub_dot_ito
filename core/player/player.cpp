@@ -24,7 +24,7 @@ void Player::set_cards(std::vector<Card *> p_cards) {
 }
 
 void Player::print_cards() {
-    int i = 1;
+    int i = 0;
     for(Card *c : this->cards) {
         std::cout << i << " ) ";
         c->print();

@@ -25,7 +25,6 @@ TEST_CASE("[queue] retrieve player commands") {
     Player *player = new Player("test");
     Command *a = new NoOp(player);
 
-
     Player *player1 = new Player("test1");
     Command *b = new NoOp(player1);
     Command *c = new NoOp(player1);

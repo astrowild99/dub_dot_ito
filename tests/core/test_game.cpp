@@ -79,4 +79,24 @@ TEST_CASE("[core] first play") {
     CHECK(table.at(0)->get_cards().size() == 2);
     CHECK(game->get_currently_declared_value() == CardValue::one);
 }
+
+TEST_CASE("[core] check cards") {
+    std::vector<Card*> cards1;
+    auto *c1 = new Core::Card(CardSeed::hearths, CardValue::one);
+    cards1.push_back(c1);
+    auto *c2 = new Core::Card(CardSeed::clubs, CardValue::one);
+    cards1.push_back(c2);
+    auto *p = new Player("Donato");
+    auto playing_cards = new PlayingCards(p, cards1);
+
+    CHECK (true == playing_cards->check(CardValue::one));
+    CHECK (false == playing_cards->check(CardValue::two));
+
+    auto *c3 = new Core::Card(CardSeed::spades, CardValue::two);
+    cards1.push_back(c3);
+
+    auto playing_cards_1 = new PlayingCards(p, cards1);
+
+    CHECK (false == playing_cards_1->check(CardValue::one));
+}
 #endif //DUB_DOT_ITO_TEST_GAME_CPP

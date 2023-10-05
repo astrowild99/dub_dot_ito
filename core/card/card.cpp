@@ -77,6 +77,10 @@ std::string Card::print_card_value(CardValue value) {
     }
 }
 
+CardValue Card::get_value() {
+    return this->value;
+}
+
 // endregion card
 
 // region factory

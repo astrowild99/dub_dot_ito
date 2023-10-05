@@ -19,9 +19,10 @@ namespace Core {
 
     public:
         PlayingCards(Player *p_player, std::vector<Card *> p_cards);
-        void distribute(Player *p_player);
+        bool check(CardValue expected_value);
 
         std::vector<Card*> get_cards();
+        Player *get_player();
     };
 
     /**
@@ -100,6 +101,8 @@ namespace Core {
         void set_currently_declared_value(CardValue p_value);
 
         FieldInfo get_field_info();
+        PlayingCards *last_played_cards();
+        void distribute_cards(Player *p_player);
         // endregion cards flow
 
         // region command progress
