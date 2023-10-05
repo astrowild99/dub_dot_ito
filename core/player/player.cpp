@@ -24,10 +24,13 @@ void Player::set_cards(std::vector<Card *> p_cards) {
 }
 
 void Player::print_cards() {
+    int i = 1;
     for(Card *c : this->cards) {
-        std::cout << "";
+        std::cout << i << " ) ";
         c->print();
         std::cout << ", ";
+        i++;
+        if (i % 10 == 0) std::cout << std::endl;
     }
     std::cout << std::endl;
 }

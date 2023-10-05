@@ -136,14 +136,21 @@ void Game::set_currently_declared_value(CardValue p_value) {
     this->currently_declared_value = p_value;
 }
 
-void Game::play_cards(PlayingCards *cards) {
+void Game::play_cards(
+        PlayingCards *cards
+    ) {
     this->table.push_back(cards);
 }
 
 FieldInfo Game::get_field_info() {
+    int count = 0;
+    for (PlayingCards *pc : this->table) {
+        count += (int) pc->get_cards().size();
+    }
     return {
         this->currently_declared_value,
-        this->table
+        this->table,
+        count
     };
 }
 

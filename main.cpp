@@ -42,8 +42,6 @@ int main(int argc, const char **argv) {
             std::cout << "The command is invalid: " << e.what() << std::endl;
             continue;
         }
-
-        cli->get_game()->set_current_player(cli->get_game()->get_next_player());
     }
 #endif
     return 0;

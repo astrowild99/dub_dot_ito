@@ -30,6 +30,7 @@ namespace Core {
     struct FieldInfo {
         CardValue currently_declared_value;
         std::vector<PlayingCards *> table;
+        int table_size;
     };
 
 /**
@@ -72,14 +73,12 @@ namespace Core {
 
         // region player flow
         Player *get_next_player(Player *player);
-
         Player *get_next_player();
-
         Player *get_previous_player(Player *player);
+        Player *get_current_player();
 
         void set_current_player(Player *player);
 
-        Player *get_current_player();
         Player *get_dealer(); // this should not change during a game
         // endregion player flow
 
@@ -98,11 +97,9 @@ namespace Core {
          * @return
          */
         CardValue get_currently_declared_value();
-
         void set_currently_declared_value(CardValue p_value);
 
         FieldInfo get_field_info();
-
         // endregion cards flow
 
         // region command progress

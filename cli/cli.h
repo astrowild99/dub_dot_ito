@@ -16,8 +16,6 @@ namespace Cli {
 
         bool game_loop_advance(Core::Command *command);
 
-        void print_screen();
-
         // region command
         Core::Command *create_command(Core::Player *player, std::string input);
 

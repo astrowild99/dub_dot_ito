@@ -31,18 +31,12 @@ bool Cli::CliInterface::game_loop_advance (Core::Command *p_command) {
     }
 
     this->game->append_command(p_command);
-    // todo continue here
+    this->game->next(); // in the cli, I have one event at the time and I can progress
     return true;
 }
 
 Core::Game *Cli::CliInterface::get_game() {
     return this->game;
-}
-
-void Cli::CliInterface::print_screen() {
-    // first I print the current player hand
-    auto player = this->game->get_current_player();
-    player->print_cards();
 }
 
 /**
@@ -65,5 +59,6 @@ void Cli::CliInterface::present_field() {
     }
     else {
         std::cout << "The table is of card: " << Core::Card::print_card_value(field_info.currently_declared_value) << std::endl;
+        std::cout << "There are currently " << field_info.table_size << " cards" << std::endl;
     }
 }

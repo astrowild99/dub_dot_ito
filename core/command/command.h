@@ -17,7 +17,8 @@ namespace Core {
         Player *player;
     public:
         /**
-         * when false, the return is to kill the game
+         * when false, the command is not terminating so the player should not change
+         * if he is the playing one
          * @param p_game
          * @return
          */
